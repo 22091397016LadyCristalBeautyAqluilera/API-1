@@ -1,0 +1,245 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Documentation - OpenAPI 1.0",
+      "description": "This is a simple OpenAPI Documentation",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "email": "ainulmufidh@gmail.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version": "1.0.11"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/api/api.php"
+      }
+    ],
+    "tags": [
+  
+      {
+        "name": "mahasiswa"
+      }
+    ],
+    "paths": {
+    
+      "/mahasiswa": {
+        "post": {
+          "tags": [
+            "mahasiswa"
+          ],
+          "summary": "Create mahasiswa",
+          "description": "This can only be done by the mahasiswa.",
+          "operationId": "createmahasiswa",
+          "requestBody": {
+            "description": "Created mahasiswa object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/mahasiswa"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/mahasiswa"
+                }
+              }
+             
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/mahasiswa"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/mahasiswa"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }, 
+      "/mahasiswa/{name}": {
+        "get": {
+          "tags": [
+            "mahasiswa"
+          ],
+          "summary": "Get mahasiswa by name",
+          "description": "",
+          "operationId": "getmahasiswaByName",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "description": "The name that needs to be fetched. Use mahasiswa for testing. ",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/mahasiswa"
+                  }
+                },
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/mahasiswa"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid name"
+            },
+            "404": {
+              "description": "mahasiswa not found"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "mahasiswa"
+          ],
+          "summary": "Update mahasiswa",
+          "description": "This can only be done by the logged in mahasiswa.",
+          "operationId": "updatemahasiswa",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "description": "name that need to be deleted",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          
+          "requestBody": {
+            "description": "Update an existent mahasiswa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/mahasiswa"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/mahasiswa"
+                }
+              },
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "$ref": "#/components/schemas/mahasiswa"
+                }
+              }
+            }
+          },
+          "responses": {
+            "default": {
+              "description": "successful"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "mahasiswa"
+          ],
+          "summary": "Delete mahasiswa",
+          "description": "This can only be done by the logged in mahasiswa.",
+          "operationId": "deletemahasiswa",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "description": "The name that needs to be deleted",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "400": {
+              "description": "Invalid name"
+            },
+            "404": {
+              "description": "mahasiswa not found"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        
+        "mahasiswa": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "example": 10
+            },
+            "name": {
+              "type": "string",
+              "example": "James Anderson"
+            },
+            "nim": {
+              "type": "string",
+              "example": "220191823"
+            },
+            "jurusan": {
+              "type": "string",
+              "example": "Teknik Informatika"
+            },
+            "semester": {
+              "type": "integer",
+              "example": 4
+            },
+            "ipk": {
+              "type": "string",
+              "example": "3.8"
+            }
+            
+          },
+          "xml": {
+            "name": "mahasiswa"
+          }
+        }
+      },
+      
+      "requestBodies": {
+        "mahasiswaArray": {
+          "description": "List of mahasiswa object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/mahasiswa"
+                }
+              }
+            }
+          }
+        }
+      }
+      
+    }
+  }
